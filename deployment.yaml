@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dempo-app--deployment
+  labels:
+    app: demp-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app
+          image: 893121324602.dkr.ecr.us-east-2.amazonaws.com/eternal-portal:latest
+          ports:
+            - containerPort: 8094
+
