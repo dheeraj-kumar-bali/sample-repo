@@ -1,37 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-app-deployment
+  name: eternal-portal-app-deployment
   labels:
-    app: demo-app
+    app: eternal-portal-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: demo-app
+      app: eternal-portal-app
   template:
     metadata:
       labels:
-        app: demo-app
+        app: eternal-portal-app
     spec:
       containers:
-        - name: demo-app
-          image: 893121324602.dkr.ecr.us-east-2.amazonaws.com/eternal-portal:latest
+        - name: eternal-portal-app
+          image: 814706224440.dkr.ecr.us-east-1.amazonaws.com/eternal-portal:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8094
+            - containerPort: 3000
+              name: eternal-portal
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-app-service
+  name: eternal-portal-app-service
 spec:
   selector:
-    app.kubernetes.io/name: proxy
+    app: eternal-portal-app
   ports:
-  - name: demo-app-service-port
+  - name: eternal-portal-app-service-port
     protocol: TCP
-    port: 8094
-    targetPort: 8094
+    port: 3000
+    targetPort: eternal-portal
   type: LoadBalancer 

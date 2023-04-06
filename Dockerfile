@@ -4,6 +4,6 @@ COPY demo/pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
 FROM --platform=linux/amd64  openjdk:17-alpine
-EXPOSE 8080
+EXPOSE 8082
 COPY --from=build /home/app/target/demo-0.0.1-SNAPSHOT.jar /app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]

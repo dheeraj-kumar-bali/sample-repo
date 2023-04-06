@@ -1,17 +1,12 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DemoController {
-    @GetMapping("/")
-    public String healthChek(){
-        return "healthy";
-    }
+    @PostMapping("/demo")
+    public String getHelloMessage(@RequestBody Input input){
 
-    @GetMapping("/demo")
-    public String getHelloMessage(){
         return "Hello World hiii";
     }
 }
